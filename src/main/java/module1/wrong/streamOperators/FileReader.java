@@ -29,7 +29,7 @@ public class FileReader implements IStreamOperator {
         try (Scanner scanner = new Scanner(new File(path))) {
 
             while (scanner.hasNextLine()) {
-                //DRY - begin - same code for creating accounts for both readers
+                //DRY breaking - begin - same code for creating accounts for both readers
                 final double amount = scanner.nextDouble();
                 final double discountRate = scanner.nextDouble();
                 final int type = scanner.nextInt();
@@ -42,7 +42,7 @@ public class FileReader implements IStreamOperator {
                         .setDepositRate(discountRate)
                         .setOperationType(accountOperationType)
                         .createAccount());
-                //DRY - end
+                //DRY breaking - end
             }
 
 

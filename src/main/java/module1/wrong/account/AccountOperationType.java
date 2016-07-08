@@ -18,7 +18,7 @@ public enum AccountOperationType {
 
     public static AccountOperationType getByOrder(int order) {
          try {
-             //KISS - takes a lot of time to get into the sense of these operations. but it works
+             //KISS breaking - takes a lot of time to get into the sense of these operations. but it works
              return Arrays.asList(AccountOperationType.values()).stream()
                      .filter(x -> x.order == order)
                      .findFirst().get();

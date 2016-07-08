@@ -19,7 +19,7 @@ public class ConsoleReader implements IStreamOperator {
         try (final Scanner scanner = new Scanner(System.in)) {
             final int n = scanner.nextInt();
             for (int i = 0; i < n; i++) {
-                //DRY - begin
+                //DRY breaking - begin
                 final double amount = scanner.nextDouble();
                 final double discountRate = scanner.nextDouble();
                 final int type = scanner.nextInt();
@@ -32,7 +32,7 @@ public class ConsoleReader implements IStreamOperator {
                         .setDepositRate(discountRate)
                         .setOperationType(accountOperationType)
                         .createAccount());
-                //DRY - end
+                //DRY breaking - end
             }
         }
 

@@ -25,7 +25,7 @@ public class Runner {
         }
         reader.doStreamOperation().forEach(e -> e.deposite());
 
-        //YAGNI - what if user wants to save results to the file;
+        //YAGNI breaking - what if user wants to save results to the file;
         System.out.println("\n\nDo you want to store results in file? (Y/N)");
 
         try (Scanner scanner = new Scanner(System.in)) {
@@ -41,7 +41,7 @@ public class Runner {
                 //the Idea is: if for reader and writer i use streams, what if I will use one interface for working with streams? nice!
                 //problem is that there is can be situation when we can use output stream instead of input stream and in this case will be confused why it using old data.
                 //e.g. example below.
-                // it's a kind of Liskov substitution principle - bad modelling plus it's better to know what kind of stream operation will be without any checking.
+                // it's a kind of Liskov substitution principle breaking - bad modelling plus it's better to know what kind of stream operation will be without any checking.
                 //anyway there is no any checking.
 
                 //streamOperator = new FileWriter(streamOperator.doStreamOperation());

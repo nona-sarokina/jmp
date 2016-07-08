@@ -4,7 +4,7 @@ package module1.wrong.account;
  * Created by user on 08.07.2016.
  */
 
-//single responsibility. Operator should do one type of operation - saving or check in
+//single responsibility breaking. Operator should do one type of operation - saving or check in
 
 public class AccountOperator{
     private double savingAmount;

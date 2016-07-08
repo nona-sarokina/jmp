@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by user on 08.07.2016.
  */
-//interface segregation
+//interface segregation breaking
 // let's imagine that only console reader should validate stream data some how.
 // And there is a bit more such methods that can be used only by a little part of implementations.
 // so. it's better to divide some functionality between more new interfaces and let only required classes implement it.
