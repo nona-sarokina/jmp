@@ -8,15 +8,14 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
 
-
 /**
  * Created by user on 23.07.2016.
  */
-public enum connections {
+public enum Connections {
     INSTANCE;
     private BasicDataSource source = new BasicDataSource();
 
-    private connections() {
+    private Connections() {
         Properties properties = new Properties();
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("db_properties.properties")) {
             properties.load(inputStream);
@@ -41,3 +40,4 @@ public enum connections {
         return connection;
     }
 }
+
