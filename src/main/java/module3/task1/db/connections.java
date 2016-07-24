@@ -12,11 +12,11 @@ import java.util.Properties;
 /**
  * Created by user on 23.07.2016.
  */
-public enum Connections {
+public enum connections {
     INSTANCE;
     private BasicDataSource source = new BasicDataSource();
 
-    private Connections() {
+    private connections() {
         Properties properties = new Properties();
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("db_properties.properties")) {
             properties.load(inputStream);
