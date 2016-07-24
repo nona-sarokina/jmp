@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by user on 23.07.2016.
  */
-@Alternative
+
 public class DBPersonReader implements IPersonReader {
     public static final String SELECT_FROM_PERSONS = "Select * from Persons";
     public static final String SELECT_FROM_PERSONS_WHERE_NAME = "Select * from Persons where name=?";

@@ -17,6 +17,7 @@ import java.nio.file.StandardOpenOption;
  */
 public class FilePersonWriter implements IPersonWriter {
     ISerializer serializer = new DBSerializer();
+
     @Override
     public void writePerson(Person person) {
         try {

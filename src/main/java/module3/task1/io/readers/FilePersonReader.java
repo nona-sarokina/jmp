@@ -42,7 +42,7 @@ public class FilePersonReader implements IPersonReader {
                 System.out.println(person);
                 System.out.println(name);
                 System.out.println(name.equals(person.getName()));
-                if (name.equals(person.getName())){
+                if (name.equals(person.getName())) {
                     return person;
                 }
             }

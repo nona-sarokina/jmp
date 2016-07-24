@@ -9,5 +9,6 @@ import java.util.List;
  */
 public interface IPersonReader {
     List<Person> readPersons();
-    Person readPerson (String name);
+
+    Person readPerson(String name);
 }

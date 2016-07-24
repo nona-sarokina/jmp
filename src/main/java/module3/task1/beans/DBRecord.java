@@ -17,10 +17,7 @@ public class DBRecord extends Person {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        // Send all output to the Appendable object sb
         Formatter formatter = new Formatter(sb, Locale.US);
-        // Explicit argument indices may be used to re-order output.
-        //1983-11-19
         SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
         String formattedDate = dateFormatter.format(this.getDateOfBirth());
         formatter.format("('%s','%s','%s','%s', %d)", this.getName(), formattedDate, this.getAddress(),this.getCity(), this.getZipCode());
