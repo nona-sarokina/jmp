@@ -1,7 +1,7 @@
 package module3.task1.factory;
 
-import module3.task1.io.readers.IPersonReader;
-import module3.task1.io.writers.IPersonWriter;
+import module3.task1.readers.IPersonReader;
+import module3.task1.writers.IPersonWriter;
 
 /**
  * Created by user on 23.07.2016.

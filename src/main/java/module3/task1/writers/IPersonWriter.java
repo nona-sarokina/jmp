@@ -1,4 +1,4 @@
-package module3.task1.io.writers;
+package module3.task1.writers;
 
 import module3.task1.beans.Person;
 

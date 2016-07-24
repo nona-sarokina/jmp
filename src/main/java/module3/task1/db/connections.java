@@ -1,8 +1,8 @@
 package module3.task1.db;
 
+import com.sun.org.apache.xpath.internal.SourceTree;
 import org.apache.commons.dbcp.BasicDataSource;
 
-import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -16,10 +16,10 @@ import java.util.Properties;
 public enum Connections {
     INSTANCE;
     private BasicDataSource source = new BasicDataSource();
-    private Connections() {
 
+    private Connections() {
         Properties properties = new Properties();
-        try(InputStream inputStream = getClass().getClassLoader().getResourceAsStream("db_properties.properties")){
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("db_properties.properties")) {
             properties.load(inputStream);
             source.setDriverClassName(properties.getProperty("class_name"));
             source.setUsername(properties.getProperty("user_name"));
@@ -30,10 +30,15 @@ public enum Connections {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
-    public Connection getConnection() throws SQLException {
-        return source.getConnection();
+    public Connection getConnection() {
+        Connection connection = null;
+        try {
+            connection = source.getConnection();
+        } catch (SQLException e) {
+            System.out.println("Can't get a connection by reason: " + e);
+        }
+        return connection;
     }
 }

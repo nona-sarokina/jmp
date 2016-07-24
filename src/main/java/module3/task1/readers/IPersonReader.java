@@ -1,4 +1,4 @@
-package module3.task1.io.readers;
+package module3.task1.readers;
 
 import module3.task1.beans.Person;
 

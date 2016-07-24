@@ -1,9 +1,8 @@
 package module3.task1.deserializers;
 
-import module3.task1.beans.FileRecord;
 import module3.task1.beans.Person;
+import module3.task1.utils.PersonToStringUtils;
 
-import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,10 +15,10 @@ import java.util.Locale;
 public class FileDeserializer implements IDeserializer<String, Person> {
     @Override
     public Person deserialize(String string) {
-        String[] fields = string.split(FileRecord.SEPARATOR);
+        String[] fields = string.split(PersonToStringUtils.SEPARATOR);
         Person person = null;
         if (fields.length == 5) {
-            DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+            DateFormat format = new SimpleDateFormat(PersonToStringUtils.DATE_FORMAT);
             try {
                 String name = fields[0];
                 Date date = format.parse(fields[1]);

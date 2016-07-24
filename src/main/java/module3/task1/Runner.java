@@ -5,7 +5,7 @@ import module3.task1.beans.Person;
 import module3.task1.factory.AbstractReadWriteFactory;
 import module3.task1.factory.DBReadWriteFactory;
 import module3.task1.factory.FileReadWriteFactory;
-import module3.task1.io.readers.IPersonReader;
+import module3.task1.readers.IPersonReader;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

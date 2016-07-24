@@ -1,4 +1,4 @@
-package module3.task1.io.readers;
+package module3.task1.readers;
 
 import module3.task1.beans.Person;
 import module3.task1.deserializers.FileDeserializer;
@@ -21,7 +21,8 @@ public class FilePersonReader implements IPersonReader {
     public List<Person> readPersons() {
         List<Person> persons = new ArrayList<>();
 
-        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("persons.txt")))) {
+        try (BufferedReader bufferedReader =
+                     new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("persons.txt")))) {
             String line = "";
             while ((line = bufferedReader.readLine()) != null) {
                 persons.add(deserializer.deserialize(line));
@@ -34,14 +35,11 @@ public class FilePersonReader implements IPersonReader {
 
     @Override
     public Person readPerson(String name) {
-        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("persons.txt")))) {
+        try (BufferedReader bufferedReader =
+                     new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("persons.txt")))) {
             String line = "";
             while ((line = bufferedReader.readLine()) != null) {
-
                 Person person = deserializer.deserialize(line);
-                System.out.println(person);
-                System.out.println(name);
-                System.out.println(name.equals(person.getName()));
                 if (name.equals(person.getName())) {
                     return person;
                 }

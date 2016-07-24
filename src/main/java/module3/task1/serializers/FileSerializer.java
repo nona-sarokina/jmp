@@ -1,14 +1,15 @@
 package module3.task1.serializers;
 
-import module3.task1.beans.FileRecord;
+import module3.task1.beans.Mode;
 import module3.task1.beans.Person;
+import module3.task1.utils.PersonToStringUtils;
 
 /**
  * Created by user on 24.07.2016.
  */
-public class FileSerializer implements ISerializer<Person, FileRecord> {
+public class FileSerializer implements ISerializer<Person, String> {
     @Override
-    public FileRecord serialize(Person person) {
-        return (FileRecord) person;
+    public String serialize(Person person) {
+        return PersonToStringUtils.personToString(person, Mode.FILE);
     }
 }

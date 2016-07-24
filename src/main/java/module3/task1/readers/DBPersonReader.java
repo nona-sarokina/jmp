@@ -1,11 +1,10 @@
-package module3.task1.io.readers;
+package module3.task1.readers;
 
 import module3.task1.beans.Person;
 import module3.task1.db.Connections;
 import module3.task1.deserializers.DBDeserializer;
 import module3.task1.deserializers.IDeserializer;
 
-import javax.enterprise.inject.Alternative;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +49,6 @@ public class DBPersonReader implements IPersonReader {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return null;
     }
 }
