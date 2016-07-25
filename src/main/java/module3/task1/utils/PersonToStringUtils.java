@@ -29,19 +29,19 @@ public class PersonToStringUtils {
     }
 
     private static String getDBPersonString(Person person) {
-        StringBuilder sb = new StringBuilder();
-        Formatter formatter = new Formatter(sb);
-        formatter.format(DB_FORMAT, person.getName(), getFormattedDate(person.getDateOfBirth()), person.getAddress(), person.getCity(), person.getZipCode());
-        return sb.toString();
+        return format(person, DB_FORMAT);
     }
 
     private static String getFilePersonString(Person person) {
+        return format(person, FILE_FORMAT);
+    }
+    private static String format(Person person, String format) {
         StringBuilder sb = new StringBuilder();
         Formatter formatter = new Formatter(sb);
-        formatter.format(FILE_FORMAT, person.getName(), getFormattedDate(person.getDateOfBirth()), person.getAddress(), person.getCity(), person.getZipCode());
+        formatter.format(format, person.getName(), getFormattedDate(person.getDateOfBirth()), person.getAddress(), person.getCity(), person.getZipCode());
         return sb.toString();
-    }
 
+    }
     public static String getFormattedDate(Date date) {
         SimpleDateFormat dateFormatter = new SimpleDateFormat(DATE_FORMAT);
         return dateFormatter.format(date);
