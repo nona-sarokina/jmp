@@ -1,21 +1,28 @@
-package module3.task1.readers;
+package module3.task1.managers;
 
 import module3.task1.beans.Person;
 import module3.task1.deserializers.FileDeserializer;
 import module3.task1.deserializers.IDeserializer;
+import module3.task1.serializers.FileSerializer;
+import module3.task1.serializers.ISerializer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by user on 23.07.2016.
+ * Created by Nona_Sarokina on 7/26/2016.
  */
-
-public class FilePersonReader implements IPersonReader {
+public class PersonFileReadWriteManager implements IPersonReadWriteManager{
     IDeserializer<String, Person> deserializer = new FileDeserializer();
+    ISerializer<Person, String> serializer = new FileSerializer();
 
     @Override
     public List<Person> readPersons() {
@@ -48,5 +55,18 @@ public class FilePersonReader implements IPersonReader {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public void writePerson(Person person) {
+        try {
+            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+            URI uri = classLoader.getResource("persons.txt").toURI();
+            Files.write(Paths.get(uri), ("\n" + serializer.serialize(person)).getBytes(), StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
 }

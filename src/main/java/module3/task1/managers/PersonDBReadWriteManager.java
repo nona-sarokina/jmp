@@ -1,21 +1,24 @@
-package module3.task1.readers;
+package module3.task1.managers;
 
 import module3.task1.beans.Person;
 import module3.task1.db.Connections;
 import module3.task1.deserializers.DBDeserializer;
 import module3.task1.deserializers.IDeserializer;
+import module3.task1.serializers.DBSerializer;
+import module3.task1.serializers.ISerializer;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by user on 23.07.2016.
+ * Created by Nona_Sarokina on 7/26/2016.
  */
-
-public class DBPersonReader implements IPersonReader {
+public class PersonDBReadWriteManager implements IPersonReadWriteManager {
     public static final String SELECT_FROM_PERSONS = "Select * from Persons";
     public static final String SELECT_FROM_PERSONS_WHERE_NAME = "Select * from Persons where name=?";
+    public static final String INSERT_INTO_PERSONS_QUERY_PREFIX = "INSERT INTO Persons (name, dateOfBirth, address, city, zipcode) VALUES ";
+    ISerializer<Person, String> serializer = new DBSerializer();
     IDeserializer<ResultSet, Person> deserializer = new DBDeserializer();
 
     @Override
@@ -50,5 +53,16 @@ public class DBPersonReader implements IPersonReader {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public void writePerson(Person person) {
+        try (Connection connection = Connections.INSTANCE.getConnection();
+             Statement statement = connection.createStatement()) {
+            statement.executeUpdate((INSERT_INTO_PERSONS_QUERY_PREFIX + serializer.serialize(person)));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 }
