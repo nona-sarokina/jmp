@@ -6,7 +6,6 @@ import module3.task1.beans.Person;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Formatter;
-import java.util.Locale;
 
 /**
  * Created by user on 24.07.2016.
