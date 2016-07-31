@@ -22,11 +22,7 @@ Source code of the program
 README file with all GC command line configuration parameters
 Screenshots from VisualVM for all types of GC running for 5 mins.
 
-1) -XX:+UseSerialGC -Xms6m -Xmx18m -XX:NewSize=2m -XX:MetaspaceSize=20m -XX:MaxMetaspaceSize=30m
-2) -XX:+UseParallelGC -XX:ParallelGCThreads=2 -Xms3m -Xmx12m -XX:NewSize=1m -XX:MetaspaceSize=20m -XX:MaxMetaspaceSize=20m
-3) -XX:+UseParallelOldGC -Xms9m -Xmx18m -XX:NewSize=3m -XX:MetaspaceSize=40m -XX:MaxMetaspaceSize=40m
-4) -XX:+UseConcMarkSweepGC -Xms6m -Xmx18m -XX:NewSize=2m -XX:MetaspaceSize=20m -XX:MaxMetaspaceSize=30m
-5) -XX:+UseG1GC -Xms4m -Xmx16m -XX:NewSize=2m -XX:MetaspaceSize=12m -XX:MaxMetaspaceSize=18m
+
 */
 public class Runner {
 
@@ -39,7 +35,7 @@ public class Runner {
             for (int j = 0; j < size; j++) {
                 collection.add(new Integer(j));
             }
-            TimeUnit.SECONDS.sleep(r.nextInt(5));
+            TimeUnit.MILLISECONDS.sleep(r.nextInt(1000));
             collection = null;
         }
     }
