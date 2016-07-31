@@ -13,7 +13,7 @@ import java.util.Set;
  */
 /*
     java.lang.OutOfMemoryError: Metaspace. Load classes continuously and make them stay in memory.
-    -XX:CompressedClassSpaceSize=100m
+    -XX:MaxMetaspaceSize=100m -XX:+TraceClassLoading -XX:+TraceClassUnloading -XX:+HeapDumpOnOutOfMemoryError  -XX:HeapDumpPath=d:\dumps
 */
 public class MetaspaceOutOfMemoryErrorMaker {
     private static final int SIZE = 1_000_000;
