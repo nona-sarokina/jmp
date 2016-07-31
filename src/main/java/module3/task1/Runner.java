@@ -5,7 +5,7 @@ import module3.task1.beans.Person;
 import module3.task1.factory.AbstractReadWriteFactory;
 import module3.task1.factory.DBReadWriteFactory;
 import module3.task1.factory.FileReadWriteFactory;
-import module3.task1.readers.IPersonReader;
+import module3.task1.managers.IPersonReadWriteManager;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -61,24 +61,24 @@ public class Runner {
                 break;
         }
 
-        IPersonReader reader = factory.getReader();
+        IPersonReadWriteManager readWriteManager = factory.getReadWriteManager();
         System.out.println("All persons are:");
-        System.out.println(reader.readPersons());
+        System.out.println(readWriteManager.readPersons());
         System.out.println("Isaak Cleve data is:");
-        System.out.println(reader.readPerson("Isaak Cleve"));
+        System.out.println(readWriteManager.readPerson("Isaak Cleve"));
         System.out.println("Inserting Craig Neu");
         SimpleDateFormat textFormat = new SimpleDateFormat("yyyy-MM-dd");
         String paramDateAsString = "1978-11-30";
         try {
             Date date = textFormat.parse(paramDateAsString);
-            factory.getWriter().writePerson(new Person("Craig Neu", date, "1329 American Drive", "Tallahassee", 32308));
+            readWriteManager.writePerson(new Person("Craig Neu", date, "1329 American Drive", "Tallahassee", 32308));
         } catch (ParseException e) {
             e.printStackTrace();
         }
         System.out.println("Craig Neu data is:");
-        System.out.println(reader.readPerson("Craig Neu"));
+        System.out.println(readWriteManager.readPerson("Craig Neu"));
         System.out.println("All persons are:");
-        System.out.println(reader.readPersons());
+        System.out.println(readWriteManager.readPersons());
 
     }
 }
