@@ -38,7 +38,7 @@ public class ExtendedCustomClassloader extends CustomClassLoader {
     public Class<?> loadClass(String name) throws ClassNotFoundException {
         Class<?> c = findLoadedClass(name);
         if (c == null) {
-            return loadClass(name);
+            return super.loadClass(name);
         } else {
             loader = new CustomClassLoader(getClassPath(), getParent());
             c = loader.loadClass(name);
