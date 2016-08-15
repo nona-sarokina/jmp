@@ -1,11 +1,7 @@
 package module6.task2;
 
 import java.util.List;
-import java.util.Queue;
 
-/**
- * Created by user on 15.08.2016.
- */
 public class ListAdapter<E> implements FIFO<E>{
     List<E> list;
 
