@@ -21,7 +21,7 @@ public class PersonOutputStream implements IPersonOutputStream {
             writer = new OutputStreamWriter(stream);
         }
         try {
-            writer.write(serializer.serialize(person) + "\n");
+            writer.write("\n" + serializer.serialize(person));
             writer.flush();
             System.out.println("Wrote " + person);
         } catch (IOException e) {

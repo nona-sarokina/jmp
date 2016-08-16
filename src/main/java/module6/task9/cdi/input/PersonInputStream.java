@@ -23,8 +23,7 @@ public class PersonInputStream implements IPersonInputStream {
         return bufferedReader.lines()
                 .map(line -> deserializer.deserialize(line))
                 .filter(e -> e.getName().equals(name))
-                .findFirst()
-                .get();
+                .findFirst().orElseGet(null);
     }
 
     @Override
