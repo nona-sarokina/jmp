@@ -64,7 +64,6 @@ public class Runner {
     public void read(){
         System.out.println("Read " + inputStream.readPerson(PersonCreator.NAME_WITH_UPPERCASE_FIRST_LETTER));
         System.out.println("Read " + inputStream.readPerson(PersonCreator.NAME_WITH_LOWERCASE_FIRST_LETTER));
-        System.out.println("Read " + inputStream.readPerson(PersonCreator.NAME_WITH_UPPERCASE_FIRST_LETTER));
         try {
             inputStream.close();
         } catch (IOException e) {

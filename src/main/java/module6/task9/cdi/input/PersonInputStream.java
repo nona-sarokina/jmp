@@ -9,25 +9,31 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class PersonInputStream implements IPersonInputStream {
     @Inject
     InputStream stream;
     IDeserializer<String, Person> deserializer = new FileDeserializer();
     private BufferedReader bufferedReader;
-
+    Map<String, Person> personsCache = new HashMap<>();
     public Person readPerson(String name) {
         if (null == bufferedReader) {
             bufferedReader = new BufferedReader(new InputStreamReader(stream));
+            personsCache = bufferedReader.lines()
+                    .map(line -> deserializer.deserialize(line))
+                    .distinct()
+                    .collect(Collectors.toMap(Person::getName, p -> p, (p1, p2) -> p1));
         }
-        return bufferedReader.lines()
-                .map(line -> deserializer.deserialize(line))
-                .filter(e -> e.getName().equals(name))
-                .findFirst().orElseGet(null);
+
+        return personsCache.get(name);
     }
 
     @Override
     public void close() throws IOException {
+        personsCache.clear();
         bufferedReader.close();
         bufferedReader = null;
     }
