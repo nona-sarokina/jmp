@@ -9,7 +9,7 @@ public class ClassicApproachCalculation {
     public static void main(String[] args) {
         Thread t;
         for (int i = 0; i < CalculationUtils.SIZE; i++) {
-            final int threadStartValue = i;
+            int threadStartValue = i;
             t = new Thread(() -> addToResult(CalculationUtils.calculate(threadStartValue)));
             t.start();
             try {

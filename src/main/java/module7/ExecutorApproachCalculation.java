@@ -13,7 +13,7 @@ public class ExecutorApproachCalculation {
     public static void main(String[] args) {
         ExecutorService service = Executors.newCachedThreadPool();
         for (int i = 0; i < CalculationUtils.SIZE; i++) {
-            final int threadStartValue = i;
+            int threadStartValue = i;
             result.add(service.submit(() -> CalculationUtils.calculate(threadStartValue)));
         }
 

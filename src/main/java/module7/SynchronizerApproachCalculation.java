@@ -14,7 +14,7 @@ public class SynchronizerApproachCalculation {
 
         CyclicBarrier barrier = new CyclicBarrier(CalculationUtils.SIZE, () -> System.out.println(result));
         for (int i = 0; i < CalculationUtils.SIZE; i++) {
-            final int threadStartValue = i;
+            int threadStartValue = i;
             new Thread(() -> {
                 result.getAndAdd(CalculationUtils.calculate(threadStartValue));
                 try {
