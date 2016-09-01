@@ -50,7 +50,7 @@ public class Runner {
         ScheduledExecutorService pool = Executors.newScheduledThreadPool(20);
         final Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter path files to upload:");
-        String input = scanner.nextLine();
+        String input = scanner.nextLine().trim();
         while (!STOP.equalsIgnoreCase(input)) {
             System.out.println(input);
             Path sourcePath = Paths.get(input);
@@ -69,7 +69,7 @@ public class Runner {
             results.add(pool.submit(uploader));
             UploadChecker uploadChecker = UploadCheckHelper.getUploadChecker(sourcePath, destinationPath);
             pool.submit(uploadChecker);
-            input = scanner.nextLine();
+            input = scanner.nextLine().trim();
         }
 
         processResultsAndFinish(pool);

@@ -52,7 +52,7 @@ public class Runner {
 
         final Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter path files to upload:");
-        String input = scanner.nextLine();
+        String input = scanner.nextLine().trim();
         while (!STOP.equalsIgnoreCase(input)) {
             System.out.println(input);
             Path sourcePath = Paths.get(input);
@@ -70,8 +70,8 @@ public class Runner {
             FileUploader uploader = new FileUploader(sourcePath, destinationPath);
             results.add(pool.submit(uploader));
             UploadChecker uploadChecker = UploadCheckHelper.getUploadChecker(sourcePath, destinationPath);
-            pool.scheduleAtFixedRate(uploadChecker, 0, 1, TimeUnit.SECONDS);
-            input = scanner.nextLine();
+            pool.scheduleAtFixedRate(uploadChecker, 0, 100, TimeUnit.MILLISECONDS);
+            input = scanner.nextLine().trim();
         }
 
         processResultsAndFinish(pool);

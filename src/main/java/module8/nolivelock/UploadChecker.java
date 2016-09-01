@@ -43,7 +43,7 @@ public class UploadChecker implements Runnable {
         }
     }
 
-    public int calculateLoadedPercentage() {
+    public synchronized int calculateLoadedPercentage() {
         return (int) (file.length() * 100 / finalSize);
     }
 
