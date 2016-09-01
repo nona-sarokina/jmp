@@ -52,7 +52,6 @@ public class Runner {
         System.out.println("Please enter path files to upload:");
         String input = scanner.nextLine().trim();
         while (!STOP.equalsIgnoreCase(input)) {
-            System.out.println(input);
             Path sourcePath = Paths.get(input);
             String fileName = sourcePath.getFileName().toString();
             File file = new File(destination + File.separator + fileName);
@@ -73,7 +72,7 @@ public class Runner {
         }
 
         processResultsAndFinish(pool);
-
+        System.out.println("Files was uploaded, please check log file");
     }
 
     private static void processResultsAndFinish(ScheduledExecutorService pool) {
