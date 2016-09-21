@@ -10,6 +10,9 @@ import java.util.List;
  * Created by user on 17.09.2016.
  */
 public abstract class AbstractDAOImpl<T> implements DAO<T> {
+
+    protected static final String DROP_TABLE_IF_EXISTS = "DROP TABLE IF EXISTS ";
+
     @Override
     public void addItem(T item) {
         try (Connection connection = Connections.INSTANCE.getConnection()) {
@@ -80,11 +83,26 @@ public abstract class AbstractDAOImpl<T> implements DAO<T> {
         }
     }
 
+    @Override
+    public void dropTable() throws SQLException {
+        try (Connection connection = Connections.INSTANCE.getConnection()) {
+            try (PreparedStatement statement = connection.prepareStatement(getDropQuery())) {
+                statement.execute();
+            }
+        }
+    }
+
+    private String getDropQuery() {
+        return DROP_TABLE_IF_EXISTS + getTableName();
+    }
+
     protected abstract String getSelectQuery();
 
     protected abstract String getCreateQuery();
 
     protected abstract String getInsertQuery();
+    protected abstract String getTableName();
+
 
     protected abstract T parseFromResultSet(ResultSet resultSet) throws SQLException;
 

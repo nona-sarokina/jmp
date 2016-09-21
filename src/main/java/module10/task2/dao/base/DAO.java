@@ -14,4 +14,5 @@ public interface DAO <T> {
     void updateItem(T item);
     List<T> getAllItems();
     void createTable() throws SQLException;
+    void dropTable() throws SQLException;
 }

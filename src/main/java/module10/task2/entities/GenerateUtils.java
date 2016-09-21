@@ -16,8 +16,8 @@ public class GenerateUtils {
     private static final String USER_GENERATOR_LINK_ONE = "http://uinames.com/api/?amount=1&region=united+states";
     private static final String USER_GENERATOR_LINK__500 = "http://uinames.com/api/?amount=500&region=united+states";
     private static final String POST_GENERATOR_LINK = "https://baconipsum.com/api/?type=all-meat&sentences=1000&start-with-lorem=1";
-    private static final int INITIAL_USERS_CAPACITY = 1000;
-    private static final int USER_CREATION_LOOP_ITERATIONS = INITIAL_USERS_CAPACITY / 5;
+    private static final int INITIAL_USERS_CAPACITY = 2000;
+    private static final int USER_CREATION_LOOP_ITERATIONS = INITIAL_USERS_CAPACITY / 500;
 
 
 
@@ -69,7 +69,7 @@ public class GenerateUtils {
         List<Post> postsList = new ArrayList<Post>();
         String textToInsert = generateText();
         for (int i = 1; i < INITIAL_USERS_CAPACITY; i++) {
-            for (int j = 0; j < i % 10; j++) {
+            for (int j = 0; j < i % 10 + 100; j++) {
                 Post post = new Post();
                 post.setUserId(i);
                 post.setText(textToInsert);
@@ -91,7 +91,7 @@ public class GenerateUtils {
                     Like like = new Like();
                     like.setUserId(i);
                     like.setPostId(j);
-                    like.setTime(GenerateUtils.getRandomDate(2010, 2016));
+                    like.setTime(GenerateUtils.getRandomDate(2015, 2016));
                     likesList.add(like);
                 }
             }

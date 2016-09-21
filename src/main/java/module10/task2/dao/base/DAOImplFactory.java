@@ -6,12 +6,11 @@ import module10.task2.dao.likes.LikeDAOImpl;
 import module10.task2.dao.likes.LikeDAOType;
 import module10.task2.dao.posts.PostDAOImpl;
 import module10.task2.dao.posts.PostDAOType;
+import module10.task2.dao.users.AdvancedDAOImpl;
+import module10.task2.dao.users.AdvancedUserDAOType;
 import module10.task2.dao.users.UserDAOImpl;
 import module10.task2.dao.users.UserDAOType;
-import module10.task2.entities.Friendship;
-import module10.task2.entities.Like;
-import module10.task2.entities.Post;
-import module10.task2.entities.User;
+import module10.task2.entities.*;
 
 import javax.enterprise.inject.Produces;
 
@@ -41,5 +40,11 @@ public class DAOImplFactory {
     @FriendshipDAOType
     public DAO<Friendship> createFriendshipDAO() {
         return new FriendshipDAOImpl();
+    }
+
+    @Produces
+    @AdvancedUserDAOType
+    public DAO<AdvancedUser> createAdvancedUserDAOType() {
+        return new AdvancedDAOImpl();
     }
 }

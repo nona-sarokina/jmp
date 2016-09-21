@@ -1,13 +1,10 @@
 package module10.task2.entities;
 
-import javax.persistence.*;
 import java.util.Date;
 
 /**
  * Created by user on 17.09.2016.
  */
-@Entity
-@Table(name = "Posts")
 public class Post {
     private int id;
     private int userId;
