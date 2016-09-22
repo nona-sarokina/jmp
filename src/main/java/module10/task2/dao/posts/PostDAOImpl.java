@@ -12,7 +12,7 @@ import java.sql.SQLException;
  * Created by user on 17.09.2016.
  */
 public class PostDAOImpl extends AbstractDAOImpl<Post> {
-    protected static final String CREATE_TABLE_QUERY = "CREATE TABLE  IF NOT EXISTS posts ( id INT AUTO_INCREMENT PRIMARY KEY, userID VARCHAR(50) NOT NULL, text LONGTEXT NOT NULL, timest TIMESTAMP NOT NULL, CONSTRAINT posts_users__fk FOREIGN KEY (userID) REFERENCES Users (id));";
+    protected static final String CREATE_TABLE_QUERY = "CREATE TABLE IF NOT EXISTS posts ( id INT AUTO_INCREMENT PRIMARY KEY, userID int NOT NULL, text LONGTEXT NOT NULL, timest TIMESTAMP NOT NULL, CONSTRAINT posts_users__fk FOREIGN KEY (userID) REFERENCES Users (id));";
     protected static final String INSERT_QUERY = "INSERT INTO posts (userId, text,  timest) VALUES (?, ?, ?)";
     protected static final String SELECT_QUERY = "SELECT * FROM posts";
     protected static final String TABLE_NAME = "posts";

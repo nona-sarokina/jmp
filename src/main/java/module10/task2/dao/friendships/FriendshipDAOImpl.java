@@ -9,7 +9,7 @@ import java.sql.*;
  * Created by user on 17.09.2016.
  */
 public class FriendshipDAOImpl extends AbstractDAOImpl<Friendship> {
-    protected static final String CREATE_TABLE_QUERY = "CREATE TABLE IF NOT EXISTS friendships ( userID1 INT       NOT NULL, userID2 INT       NOT NULL, timest  TIMESTAMP NOT NULL, CONSTRAINT friendships_userID1_userID2_pk PRIMARY KEY (userID1, userID2), CONSTRAINT FRIENDSHIPS_USERS1__FK FOREIGN KEY (USERID1) REFERENCES USERS (ID), CONSTRAINT FRIENDSHIPS_USERS2__FK FOREIGN KEY (USERID2) REFERENCES USERS (ID) );";
+    protected static final String CREATE_TABLE_QUERY = "CREATE TABLE IF NOT EXISTS friendships ( userID1 INT NOT NULL, userID2 INT NOT NULL, timest TIMESTAMP NOT NULL, CONSTRAINT friendships_userID1_userID2_pk PRIMARY KEY (userID1, userID2), CONSTRAINT FRIENDSHIPS_USERS1__FK FOREIGN KEY (USERID1) REFERENCES USERS (ID), CONSTRAINT FRIENDSHIPS_USERS2__FK FOREIGN KEY (USERID2) REFERENCES USERS (ID) );";
     protected static final String SELECT_QUERY = "SELECT * FROM friendships";
     protected static final String INSERT_QUERY = "INSERT INTO friendships (userId1, userId2, timest) VALUES (?, ?, ?)";
     protected static final String TABLE_NAME = "friendships";

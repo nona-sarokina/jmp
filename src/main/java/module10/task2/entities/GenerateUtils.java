@@ -58,7 +58,6 @@ public class GenerateUtils {
                     friendship.setUserId2(j);
                     friendship.setTime(GenerateUtils.getRandomDate(2010, 2016));
                     friendshipList.add(friendship);
-                    //friendshipDAO.addItem(friendship);
                 }
             }
         }

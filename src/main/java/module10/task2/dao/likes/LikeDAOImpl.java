@@ -12,7 +12,7 @@ import java.sql.SQLException;
  * Created by user on 17.09.2016.
  */
 public class LikeDAOImpl extends AbstractDAOImpl<Like> {
-    protected static final String CREATE_TABLE_QUERY = "CREATE TABLE  IF NOT EXISTS likes ( postID INT NOT NULL, userID INT NOT NULL, timest TIMESTAMP NOT NULL, CONSTRAINT likes_postID_userID_pk PRIMARY KEY (postID, userID), CONSTRAINT likes_posts__fk FOREIGN KEY (postID) REFERENCES posts (id), CONSTRAINT likes_users__fk FOREIGN KEY (userID) REFERENCES users (id) );";
+    protected static final String CREATE_TABLE_QUERY = "CREATE TABLE IF NOT EXISTS likes ( postID INT NOT NULL, userID INT NOT NULL, timest TIMESTAMP NOT NULL, CONSTRAINT likes_postID_userID_pk PRIMARY KEY (postID, userID), CONSTRAINT likes_posts__fk FOREIGN KEY (postID) REFERENCES posts (id), CONSTRAINT likes_users__fk FOREIGN KEY (userID) REFERENCES users (id) );";
     protected static final String INSERT_QUERY = "INSERT INTO likes (postId, userId, timest) VALUES (?, ?, ?)";
     protected static final String SELECT_QUERY = "SELECT * FROM likes";
     protected static final String TABLE_NAME = "likes";
