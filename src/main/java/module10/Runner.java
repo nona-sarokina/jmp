@@ -80,9 +80,7 @@ public class Runner {
 
     public void run() throws IOException {
         doTask2();
-       long start = System.currentTimeMillis();
         doTask1(URL, orderValue);
-        System.out.println("took " + (System.currentTimeMillis() - start));
     }
     public static void main(String[] args) throws IOException {
         if (args.length  < 1) {

@@ -60,8 +60,11 @@ public class H2TableCopier implements ITableCopier {
 
     public void copy(Order order) {
         List<TableData> data = getTableData();
+        System.out.println("Copying tables structure...");
         creteTables(data);
+        System.out.println("Copying rows...");
         insert(data, order);
+        System.out.println("Copying constrains...");
         addConstrains(data);
     }
 
@@ -204,7 +207,7 @@ public class H2TableCopier implements ITableCopier {
                         } catch (SQLException e) {
                             e.printStackTrace();
                         } finally {
-                            return "inserted";
+                            return tableData.getName() + ": rows copied";
                         }
                     }
             ));
