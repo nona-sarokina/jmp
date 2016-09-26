@@ -86,7 +86,7 @@ public class GenerateUtils {
         for (int i = 1; i < INITIAL_USERS_CAPACITY; i++) {
             for (int j = 1; j < INITIAL_USERS_CAPACITY; j++) {
 
-                if (i != j && j % 3 == 0) {
+                if (i != j && j % 5 == 0) {
                     Like like = new Like();
                     like.setUserId(i);
                     like.setPostId(j);
