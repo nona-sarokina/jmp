@@ -1,7 +1,8 @@
 package module10;
 
-import module10.task1.H2TableCopier;
-import module10.task1.Order;
+import module10.task1.copy.H2TableCopier;
+import module10.task1.copy.ITableCopier;
+import module10.task1.copy.Order;
 import module10.task2.dao.base.DAO;
 import module10.task2.dao.friendships.FriendshipDAOType;
 import module10.task2.dao.likes.LikeDAOType;
@@ -12,7 +13,6 @@ import module10.task2.entities.*;
 import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;
 
-import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -79,7 +79,7 @@ public class Runner {
 
 
     public void run() throws IOException {
-       // doTask2();
+        doTask2();
        long start = System.currentTimeMillis();
         doTask1(URL, orderValue);
         System.out.println("took " + (System.currentTimeMillis() - start));
@@ -144,7 +144,8 @@ public class Runner {
 
     private void doTask1(String url, String enteredOrder) {
         Order order = Order.valueOf(enteredOrder);
-        new H2TableCopier(url).copy(order);
+        ITableCopier iTableCopier = new H2TableCopier(url);
+        iTableCopier.copy(order);
     }
 
 

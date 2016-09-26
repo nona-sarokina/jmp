@@ -1,4 +1,4 @@
-package module10.task1;
+package module10.task1.copy;
 
 import module10.task1.beans.TableData;
 

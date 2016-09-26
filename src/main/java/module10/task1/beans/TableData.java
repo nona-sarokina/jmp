@@ -7,6 +7,12 @@ import java.util.stream.Collectors;
  * Created by user on 21.09.2016.
  */
 public class TableData {
+    private static final String ALTER_TABLE_ALTER_COLUMN_NOT_NULL = "ALTER TABLE %s ALTER COLUMN %s %s NOT NULL;";
+    private static final String ALTER_TABLE_ADD_PRIMARY_KEY = " ALTER TABLE %s ADD PRIMARY KEY (%s);";
+    private static final String ALTER_TABLE_ADD_CONSTRAINT_FOREIGN_KEY = "ALTER TABLE %s ADD CONSTRAINT %s FOREIGN KEY (%s) REFERENCES %s (%s);";
+    private static final String SELECT_FROM = "SELECT * FROM %s";
+    private static final String INSERT_INTO_VALUES = "INSERT INTO %s ( %s ) VALUES ( %s );";
+    private static final String CREATE_TABLE = "CREATE TABLE %s ( %s );";
     private String name;
     private int columnCount;
     private Set<ColumnData> columnDatas;
@@ -66,7 +72,7 @@ public class TableData {
 
     public String getCreateQuery() {
 
-        return String.format("CREATE TABLE %s ( %s );", name, columnDatas.stream()
+        return String.format(CREATE_TABLE, name, columnDatas.stream()
                 .map(ColumnData::getOptions)
                 .collect(Collectors.joining(",")));
 
@@ -82,28 +88,24 @@ public class TableData {
         StringBuilder query = new StringBuilder();
         columnDatas.stream()
                 .filter(e -> primaryKeys.contains(e.getName()))
-                .forEach(column -> query.append(String.format("ALTER TABLE %s ALTER COLUMN %s %s NOT NULL;", name, column.getName(), column.getType())));
-        query.append(String.format(" ALTER TABLE %s ADD PRIMARY KEY (%s);", name, primaryKeys.stream().collect(Collectors.joining(","))));
+                .forEach(column -> query.append(String.format(ALTER_TABLE_ALTER_COLUMN_NOT_NULL, name, column.getName(), column.getType())));
+        query.append(String.format(ALTER_TABLE_ADD_PRIMARY_KEY, name, primaryKeys.stream().collect(Collectors.joining(","))));
         return query.toString();
     }
 
     public String getForeignKeyAlterQuery() {
         StringBuilder query = new StringBuilder();
-        foreignKeys.stream().forEach(key -> query.append(String.format("ALTER TABLE %s ADD CONSTRAINT %s FOREIGN KEY (%s) REFERENCES %s (%s);",
+        foreignKeys.stream().forEach(key -> query.append(String.format(ALTER_TABLE_ADD_CONSTRAINT_FOREIGN_KEY,
                 name, key.getName(), key.getColumnName(), key.getPkTableName(), key.getPkColumnName())));
-
-        foreignKeys.stream().forEach(key -> System.out.println(String.format("ALTER TABLE %s ADD CONSTRAINT %s FOREIGN KEY (%s) REFERENCES %s (%s);",
-                name, key.getName(), key.getColumnName(), key.getPkTableName(), key.getPkColumnName())));
-
         return query.toString();
     }
 
     public String getSelectQuery() {
-        return "SELECT * FROM " + name;
+        return String.format(SELECT_FROM, name);
     }
 
     public String getInsertQuery() {
-        return String.format("INSERT INTO %s ( %s ) VALUES ( %s );", name, getColumnsList(),
+        return String.format(INSERT_INTO_VALUES, name, getColumnsList(),
                 Collections.nCopies(columnDatas.size(), "?").stream().collect(Collectors.joining(", ")));
     }
 
